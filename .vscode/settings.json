@@ -1,0 +1,6 @@
+{
+    "go.buildEnv": {
+        "GOOS": "linux",
+        "GOARCH": "amd64"
+    } 
+}

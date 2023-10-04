@@ -1,0 +1,55 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Prepare",
+        "dependsOrder": "sequence",
+        "dependsOn": [
+          "Build emailAppender",
+          "Zip emailAppender"
+        ],
+        "problemMatcher": [],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        }
+      },
+      {
+        "label": "Build emailAppender",
+        "type": "shell",
+        "command": "go",
+        "args": [
+          "build",
+          "-o",
+          "${workspaceFolder}/bin/emailAppender",
+          "${workspaceFolder}/main.go"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "presentation": {
+          "reveal": "always",
+          "panel": "shared"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Zip emailAppender",
+        "type": "shell",
+        "command": "Compress-Archive",
+        "args": [
+          "-Path",
+          "${workspaceFolder}/deployment/bin/emailAppender",
+          "-Destination",
+          "${workspaceFolder}/deployment/emailAppender.zip"
+        ],
+        "group": "build",
+        "presentation": {
+          "reveal": "always",
+          "panel": "shared"
+        },
+        "problemMatcher": []
+      }
+    ]
+  }
